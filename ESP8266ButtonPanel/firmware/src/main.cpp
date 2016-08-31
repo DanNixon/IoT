@@ -1,22 +1,18 @@
-#include <Adafruit_SSD1306.h>
+#include <SSD1306.h>
 #include <MCP23S17.h>
 
-Adafruit_SSD1306 g_oled;
+SSD1306 g_oled(0x3c, D3, D4);
 
 MCP g_inputA(1, 10);
 MCP g_inputB(2, 10);
 MCP g_outputA(3, 10);
 MCP g_outputB(4, 10);
 
-#if (SSD1306_LCDHEIGHT != 64)
-#error("Height incorrect, please fix Adafruit_SSD1306.h!");
-#endif
-
 void setup()
 {
   /* Initialise OLED display */
-  g_oled.begin(SSD1306_SWITCHCAPVCC, 0x3C);
-  g_oled.display();
+  g_oled.init();
+  g_oled.setFont(ArialMT_Plain_10);
 
   /* Initialise port expanders (buttons) */
   g_inputA.begin();
@@ -29,5 +25,13 @@ void setup()
 
 void loop()
 {
+  g_oled.clear();
+  g_oled.setTextAlignment(TEXT_ALIGN_LEFT);
+  g_oled.setFont(ArialMT_Plain_10);
+  char buff[30];
+  snprintf(buff, 30, "time=%d", millis());
+  g_oled.drawString(0, 0, buff);
+  g_oled.display();
+
   delay(100);
 }
