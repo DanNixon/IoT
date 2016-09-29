@@ -23,7 +23,7 @@ void loop()
   if (Serial.available() >= 2)
   {
     uint8_t pinNum = Serial.parseInt();
-    char onStatus = Serial.read();
+    char command = Serial.read();
 
     if (pinNum >= NUM_PINS)
     {
@@ -31,7 +31,27 @@ void loop()
       return;
     }
 
-    bool on = onStatus != 'h';
+    bool last = !digitalRead(PIN_MAPPING[pinNum]);
+
+    bool on = false;
+    switch (command)
+    {
+    case 'h':
+      on = true;
+      break;
+    case 'l':
+      on = false;
+      break;
+    case 't':
+      on = !last;
+      break;
+    case 'q':
+      Serial.println(last);
+      return;
+    default:
+      Serial.println("FAIL");
+      return;
+    }
 
 #ifdef DEBUG
     Serial.println(pinNum);
@@ -39,7 +59,8 @@ void loop()
     Serial.println(on);
 #endif
 
-    digitalWrite(PIN_MAPPING[pinNum], on);
+    digitalWrite(PIN_MAPPING[pinNum], !on);
+
     Serial.println("ACK");
   }
 }
