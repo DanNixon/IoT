@@ -1,15 +1,18 @@
 #include <Adafruit_NeoPixel.h>
+#include <DHT.h>
 #include <HADeviceManager.h>
 #include <HALight.h>
+#include <HASensor.h>
 
 #include "config.h"
 
 #define MQTT_VERSION MQTT_VERSION_3_1_1
 
 Adafruit_NeoPixel leds(14, D1, NEO_GRB + NEO_KHZ800);
+DHT dht(D4, DHT22);
 
 HADeviceManager manager(MQTT_SERVER_IP, MQTT_CLIENT_ID, MQTT_USER,
-                        MQTT_PASSWORD);
+                        MQTT_PASSWORD, 1883, "fw/online");
 
 void setLight(int idx, HALightState state)
 {
@@ -119,9 +122,21 @@ HALight lightR5("fw/r/5", "fw/r/5/c", setLightR5);
 HALight lightR6("fw/r/6", "fw/r/6/c", setLightR6);
 HALight lightR7("fw/r/7", "fw/r/7/c", setLightR7);
 
+HASensor humidity("fw/humid");
+HASensor temperature("fw/temp");
+
 void callback(char *topic, byte *payload, unsigned int len)
 {
   manager.mqttCallback(topic, payload, len);
+}
+
+void update_dht_sensor()
+{
+  float h = dht.readHumidity();
+  float t = dht.readTemperature();
+
+  humidity.updateSensorFloat(h);
+  temperature.updateSensorFloat(t);
 }
 
 void setup()
@@ -130,6 +145,8 @@ void setup()
 
   leds.begin();
   leds.show();
+
+  dht.begin();
 
   manager.connectWiFi(WIFI_SSID, WIFI_PASSWORD);
   manager.mqtt().setCallback(callback);
@@ -148,9 +165,20 @@ void setup()
   manager.addDevice(&lightR5);
   manager.addDevice(&lightR6);
   manager.addDevice(&lightR7);
+  manager.addDevice(&humidity);
+  manager.addDevice(&temperature);
 }
+
+uint32_t last_dht_poll_time = 0;
 
 void loop()
 {
   manager.loop();
+
+  uint32_t now = millis();
+  if (now - last_dht_poll_time > 60000)
+  {
+    update_dht_sensor();
+    last_dht_poll_time = now;
+  }
 }
