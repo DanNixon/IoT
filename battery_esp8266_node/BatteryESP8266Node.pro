@@ -1,4 +1,4 @@
-update=Sun 12 Nov 2017 17:19:08 GMT
+update=Sat 18 Nov 2017 16:44:48 GMT
 version=1
 last_client=kicad
 [pcbnew]
@@ -61,5 +61,5 @@ LibName29=opto
 LibName30=atmel
 LibName31=contrib
 LibName32=valves
-LibName33=/home/dan/git_repos/KiCad_Lib/kicad-ESP8266/ESP8266
-LibName34=/home/dan/git_repos/KiCad_Lib/custom/regulators
+LibName33=KiCad_Lib/custom/regulators
+LibName34=KiCad_Lib/kicad-ESP8266/ESP8266

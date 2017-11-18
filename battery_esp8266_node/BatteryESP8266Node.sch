@@ -31,8 +31,8 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:ESP8266
 LIBS:regulators
+LIBS:ESP8266
 LIBS:BatteryESP8266Node-cache
 EELAYER 25 0
 EELAYER END
@@ -260,36 +260,25 @@ Text Label 2600 6250 2    60   ~ 0
 IO_12
 Text Label 2600 6350 2    60   ~ 0
 IO_13
-$Comp
-L Conn_02x04_Counter_Clockwise J3
-U 1 1 5A023CD8
-P 4500 4300
-F 0 "J3" H 4550 4500 50  0000 C CNN
-F 1 "IO Header" H 4550 4000 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_2x04_Pitch2.54mm" H 4500 4300 50  0001 C CNN
-F 3 "" H 4500 4300 50  0001 C CNN
-	1    4500 4300
-	1    0    0    -1  
-$EndComp
-Text Label 4200 4400 2    60   ~ 0
+Text Label 4500 4600 0    60   ~ 0
 IO_5
-Text Label 4200 4200 2    60   ~ 0
+Text Label 4500 4400 0    60   ~ 0
 IO_2
-Text Label 4200 4300 2    60   ~ 0
+Text Label 4500 4500 0    60   ~ 0
 IO_4
-Text Label 4200 4500 2    60   ~ 0
+Text Label 4500 4200 0    60   ~ 0
 IO_12
-Text Label 4900 4500 0    60   ~ 0
+Text Label 4500 4100 0    60   ~ 0
 IO_13
-Text Label 4900 4400 0    60   ~ 0
+Text Label 4500 4700 0    60   ~ 0
 IO_14
-Text Label 4900 4300 0    60   ~ 0
+Text Label 4500 4300 0    60   ~ 0
 IO_15
-Text Label 4900 4200 0    60   ~ 0
+Text Label 4500 4800 0    60   ~ 0
 IO_16
-Text Label 2200 4400 2    60   ~ 0
+Text Label 1900 4300 2    60   ~ 0
 ESP_UART_TX
-Text Label 2200 4300 2    60   ~ 0
+Text Label 1900 4400 2    60   ~ 0
 ESP_UART_RX
 $Comp
 L R R1
@@ -368,31 +357,11 @@ Wire Wire Line
 Wire Wire Line
 	4600 6350 4500 6350
 Wire Wire Line
-	4200 4200 4300 4200
-Wire Wire Line
-	4200 4300 4300 4300
-Wire Wire Line
-	4200 4400 4300 4400
-Wire Wire Line
-	4300 4500 4200 4500
-Wire Wire Line
-	4900 4300 4800 4300
-Wire Wire Line
-	4800 4200 4900 4200
-Wire Wire Line
-	4800 4400 4900 4400
-Wire Wire Line
-	4900 4500 4800 4500
-Wire Wire Line
 	2600 1200 2600 1300
 Wire Wire Line
 	2600 1600 2600 1700
 Wire Wire Line
 	1600 1200 1600 1700
-Wire Wire Line
-	2200 4300 2500 4300
-Wire Wire Line
-	2200 4400 2500 4400
 $Comp
 L ESP-12E U1
 U 1 1 5A087796
@@ -554,14 +523,145 @@ F 3 "" H 8400 4900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Conn_01x02 J2
-U 1 1 5A0A2AF2
-P 2700 4300
-F 0 "J2" H 2700 4400 50  0000 C CNN
-F 1 "UART" H 2700 4100 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 2700 4300 50  0001 C CNN
-F 3 "" H 2700 4300 50  0001 C CNN
-	1    2700 4300
+L +3.3V #PWR015
+U 1 1 5A106DEF
+P 2700 4200
+F 0 "#PWR015" H 2700 4050 50  0001 C CNN
+F 1 "+3.3V" H 2700 4340 50  0000 C CNN
+F 2 "" H 2700 4200 50  0001 C CNN
+F 3 "" H 2700 4200 50  0001 C CNN
+	1    2700 4200
 	1    0    0    -1  
 $EndComp
+$Comp
+L GND #PWR016
+U 1 1 5A106E36
+P 2700 4500
+F 0 "#PWR016" H 2700 4250 50  0001 C CNN
+F 1 "GND" H 2700 4350 50  0000 C CNN
+F 2 "" H 2700 4500 50  0001 C CNN
+F 3 "" H 2700 4500 50  0001 C CNN
+	1    2700 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x08 J3
+U 1 1 5A107287
+P 4100 4500
+F 0 "J3" H 4100 4900 50  0000 C CNN
+F 1 "IO" H 4100 4000 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 4100 4500 50  0001 C CNN
+F 3 "" H 4100 4500 50  0001 C CNN
+	1    4100 4500
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	4300 4100 4500 4100
+Wire Wire Line
+	4500 4200 4300 4200
+Wire Wire Line
+	4300 4300 4500 4300
+Wire Wire Line
+	4500 4800 4300 4800
+Wire Wire Line
+	4300 4700 4500 4700
+Wire Wire Line
+	4500 4600 4300 4600
+Wire Wire Line
+	4300 4500 4500 4500
+Wire Wire Line
+	4300 4400 4500 4400
+$Comp
+L Conn_01x04 J4
+U 1 1 5A10822F
+P 7500 3400
+F 0 "J4" H 7500 3600 50  0000 C CNN
+F 1 "GND" H 7500 3100 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 7500 3400 50  0001 C CNN
+F 3 "" H 7500 3400 50  0001 C CNN
+	1    7500 3400
+	-1   0    0    1   
+$EndComp
+$Comp
+L Conn_01x04 J5
+U 1 1 5A1083A8
+P 8700 3400
+F 0 "J5" H 8700 3600 50  0000 C CNN
+F 1 "3V3" H 8700 3100 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 8700 3400 50  0001 C CNN
+F 3 "" H 8700 3400 50  0001 C CNN
+	1    8700 3400
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR017
+U 1 1 5A108441
+P 7800 3600
+F 0 "#PWR017" H 7800 3350 50  0001 C CNN
+F 1 "GND" H 7800 3450 50  0000 C CNN
+F 2 "" H 7800 3600 50  0001 C CNN
+F 3 "" H 7800 3600 50  0001 C CNN
+	1    7800 3600
+	1    0    0    -1  
+$EndComp
+$Comp
+L +3.3V #PWR018
+U 1 1 5A10847B
+P 9000 3100
+F 0 "#PWR018" H 9000 2950 50  0001 C CNN
+F 1 "+3.3V" H 9000 3240 50  0000 C CNN
+F 2 "" H 9000 3100 50  0001 C CNN
+F 3 "" H 9000 3100 50  0001 C CNN
+	1    9000 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7700 3200 7800 3200
+Wire Wire Line
+	7800 3200 7800 3600
+Wire Wire Line
+	7700 3500 7800 3500
+Connection ~ 7800 3500
+Wire Wire Line
+	7700 3400 7800 3400
+Connection ~ 7800 3400
+Wire Wire Line
+	7700 3300 7800 3300
+Connection ~ 7800 3300
+Wire Wire Line
+	9000 3100 9000 3500
+Wire Wire Line
+	9000 3500 8900 3500
+Wire Wire Line
+	8900 3400 9000 3400
+Connection ~ 9000 3400
+Wire Wire Line
+	8900 3300 9000 3300
+Connection ~ 9000 3300
+Wire Wire Line
+	8900 3200 9000 3200
+Connection ~ 9000 3200
+$Comp
+L Conn_02x02_Counter_Clockwise J2
+U 1 1 5A108D38
+P 2400 4400
+F 0 "J2" H 2450 4500 50  0000 C CNN
+F 1 "UART" H 2450 4200 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_2x02_Pitch2.54mm" H 2400 4400 50  0001 C CNN
+F 3 "" H 2400 4400 50  0001 C CNN
+	1    2400 4400
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2600 4400 2700 4400
+Wire Wire Line
+	2700 4400 2700 4500
+Wire Wire Line
+	2700 4200 2700 4300
+Wire Wire Line
+	2700 4300 2600 4300
+Wire Wire Line
+	2100 4300 1900 4300
+Wire Wire Line
+	1900 4400 2100 4400
 $EndSCHEMATC
