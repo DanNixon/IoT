@@ -1,9 +1,5 @@
 #pragma once
 
-#define PIXEL_COUNT 11
-#define PIXEL_PIN D7
-#define PIXEL_MODE NEO_BRG + NEO_KHZ800
-
 #define DHT_PIN D4
 #define DHT_MODE DHT22
 
