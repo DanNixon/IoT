@@ -34,13 +34,13 @@ void update_dht_sensor()
   temperature.updateSensorFloat(t);
 }
 
-bool garage_door_last = false;
-bool side_door_last = false;
+bool garage_door_last = true;
+bool side_door_last = true;
 
 void update_door_sensors()
 {
-  bool garage_door_state = !digitalRead(GARAGE_DOOR_SW_PIN);
-  bool side_door_state = !digitalRead(SIDE_DOOR_SW_PIN);
+  bool garage_door_state = digitalRead(GARAGE_DOOR_SW_PIN);
+  bool side_door_state = digitalRead(SIDE_DOOR_SW_PIN);
 
   if (garage_door_last == garage_door_state)
     garage_door.updateSensor(garage_door_state);
