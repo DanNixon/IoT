@@ -6,17 +6,17 @@
 
 #define MQTT_VERSION MQTT_VERSION_3_1_1
 
-Adafruit_NeoPixel leds(PIXEL_COUNT, PIXEL_PIN, PIXEL_MODE);
+Adafruit_NeoPixel leds(11, D7, NEO_BRG + NEO_KHZ800);
 
 HADeviceManager manager(MQTT_SERVER_IP, MQTT_CLIENT_ID, MQTT_USER,
-                        MQTT_PASSWORD);
+                        MQTT_PASSWORD, 1883, "lights/garage/online");
 
 bool setLight(HALightState state)
 {
   leds.setBrightness(state.brightness);
   leds.show();
 
-  for (int i = 0; i < PIXEL_COUNT; i++)
+  for (int i = 0; i < leds.numPixels(); i++)
   {
     leds.setPixelColor(i, state.on ? Adafruit_NeoPixel::Color(
                                          state.red, state.green, state.blue)
@@ -27,7 +27,10 @@ bool setLight(HALightState state)
   return true;
 }
 
-HALight light(STATE_TOPIC, COMMAND_TOPIC, setLight);
+HALight light(
+    "lights/garage/workbench",
+    "lights/garage/workbench/cmd",
+    setLight);
 
 void callback(char *topic, byte *payload, unsigned int len)
 {

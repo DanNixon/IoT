@@ -1,4 +1,5 @@
 #include <Adafruit_NeoPixel.h>
+#include <Adafruit_Sensor.h>
 #include <DHT.h>
 #include <HADeviceManager.h>
 #include <HALight.h>
