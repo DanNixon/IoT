@@ -1,3 +1,4 @@
+#include <Adafruit_Sensor.h>
 #include <DHT.h>
 #include <HADeviceManager.h>
 #include <HASensor.h>
@@ -5,8 +6,9 @@
 #include "config.h"
 
 #define MQTT_VERSION MQTT_VERSION_3_1_1
+#define NODE_NAME MQTT_CLIENT_ID
 
-DHT dht(D4, DHT22);
+DHT dht(14, DHT22);
 
 HADeviceManager manager(MQTT_SERVER_IP, MQTT_CLIENT_ID, MQTT_USER,
                         MQTT_PASSWORD, 1883, NODE_NAME"/online");
