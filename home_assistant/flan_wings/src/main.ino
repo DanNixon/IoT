@@ -138,6 +138,8 @@ void update_dht_sensor()
 
   humidity.updateSensorFloat(h);
   temperature.updateSensorFloat(t);
+
+  manager.publishAvailabilityTopic();
 }
 
 void setup()
@@ -168,6 +170,8 @@ void setup()
   manager.addDevice(&lightR7);
   manager.addDevice(&humidity);
   manager.addDevice(&temperature);
+
+  update_dht_sensor();
 }
 
 uint32_t last_dht_poll_time = 0;
