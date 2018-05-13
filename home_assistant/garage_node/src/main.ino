@@ -10,12 +10,12 @@
 
 #define MQTT_VERSION MQTT_VERSION_3_1_1
 
-#define GARAGE_DOOR_SW_PIN D5
-#define SIDE_DOOR_SW_PIN D6
+#define GARAGE_DOOR_SW_PIN 5
+#define SIDE_DOOR_SW_PIN 4
 
 #define NODE_NAME "garage"
 
-DHT dht(D4, DHT22);
+DHT dht(14, DHT22);
 
 HADeviceManager manager(MQTT_SERVER_IP, MQTT_CLIENT_ID, MQTT_USER,
                         MQTT_PASSWORD, 1883, NODE_NAME"/online");
