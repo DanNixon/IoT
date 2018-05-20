@@ -2,5 +2,5 @@
 	path = battery_esp8266_node/KiCad_Lib
 	url = https://github.com/DanNixon/KiCad_Lib.git
 [submodule "wemos_climate_node/lib/Adafruit_SSD1306"]
-	path = wemos_climate_node/lib/Adafruit_SSD1306
+	path = home_assistant/wemos_climate_node/lib/Adafruit_SSD1306
 	url = https://github.com/mcauser/Adafruit_SSD1306.git
